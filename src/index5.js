@@ -9,17 +9,20 @@ var output = (<div className='container'>
     <div className='row'>
         <div className='col-6 offset-3'>
             <div className='card shadow'>
-                <div className='card-header text-bg-secondary'>
-                    <h3>Forget Password</h3>
+                <div className='card-header text-bg-primary'>
+                    <h3>Login</h3>
                 </div>
                 <div className='card-body'>
                     <form>
-                    <div className='mb-3'>
+                        <div className='mb-3'>
                             <input type='email' className='form-control' placeholder='Email' />
                         </div>
-                        
+                        <div className='mb-3'>
+                            <input type='password' className='form-control'
+                            placeholder='Password' />
+                        </div>
                         <div className='mb-3 text-end'>
-                            <input type='button' className='btn btn-secondary' value='Forget Password' />
+                            <input type='button' className='btn btn-primary' value='Login' />&nbsp;<input type='reset' className='btn btn-secondary' value='clear all' />
                         </div>
                     </form>
                 </div>
@@ -28,4 +31,3 @@ var output = (<div className='container'>
     </div>
 </div>)
 root.render(output);
-
