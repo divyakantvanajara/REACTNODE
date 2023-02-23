@@ -23,5 +23,5 @@ let CurrentDateTime = function()
 }
 let RefreshDateTime = function(){
     root.render(CurrentDateTime());
-}
+}   
 setInterval(RefreshDateTime,1000)
