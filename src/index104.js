@@ -104,7 +104,7 @@ var output = (
           <div className="card">
             <img src="https://picsum.photos/200/300" className="card-img-top" alt="card-img-top" />
             <div className="card-body">
-              <h5 className="card-title">Tourist &amp; Visitor Visa</h5>
+              <h5 className="card-title">Tourist Visitor Visa</h5>
               <p className="card-text">Suspendisse lobortis eros ac blan mi aliquet justo sit amet aliquet nunc simple dummy content risus a felis. </p>
               <a href className="text-dark">Read More</a>
             </div>
