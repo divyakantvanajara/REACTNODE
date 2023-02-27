@@ -1,45 +1,48 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
+class Person extends React.Component
+{
 
-class Person extends React.Component {
-    constructor (props)
-    {
-        super(props);
-        this.state = {
-            name :this.props.name,
-            email:this.props.email,
-            contact:this.props.contact,
-            height:this.props.height,
-            weight:this.props.weight
-        }
+   constructor(props)
+   {
+    super(props);
+    this.state ={
+        'name': this.props.name,
+        'height': this.props.height,
+        'weight': this.props.weight
     }
-  render()
-  {
-      return(
-          <div className='container'>
-              <div className='row'>
-                  <div className='col-lg-3'>
-                    <div className='card'>
-                        <div className='card-body'>
-                            <p>
-                                Name:   {this.state.name}<br/>
-                                email:  {this.state.email}<br/>
-                                contact:{this.state.contact}<br/>
-                                height: {this.state.height}<br/>
-                                weight: {this.state.weight}<br/>
-                            </p>
-                        </div>
-                    </div>
-                      
-                  </div>
-              </div>
-          </div>
-      );
-  }
+   }
+  
+   render()
+   {
+    var output=(
+            <div className='col-4'>
+                <ul className='list-group'>
+                    <li className='list-group-item'><b>Name </b>{this.state.name}</li>
+                    <li className='list-group-item'><b>height </b>{this.state.height}</li>
+                    <li className='list-group-item'><b>weight </b>{this.state.weight}</li>
+                </ul>
+            </div>
+       
+    );
+        return output;
+   }
 }
-root.render(<Person name='divyakant' email='divyakant@gmail.com'contact='123456789'height='172cm'weight='85' />);
+function DisplayPersons()
+{
+    var output=(
+            <div className='container'>
+             <div className='row'>
+             <div className='col-12'><h3>Person Detail</h3></div>
+                         <Person name ='divyakant' height='200' weight='200' />
+                           <Person name ='ila' height='200' weight='200' />
+                         <Person name ='dk' height='200' weight='200' />
+            </div>
+            </div>)
+            return output;
+      
+}
+
+root.render(<DisplayPersons />);
