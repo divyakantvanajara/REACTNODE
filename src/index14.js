@@ -19,6 +19,7 @@ class Picture extends React.Component
             width : this.state.width * 1.25
         });
     }
+    
     render() {
         var output = (
             <div className='col-4 mb-3'>
