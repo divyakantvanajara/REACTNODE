@@ -5,7 +5,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 class Picture extends React.Component
 {
 
-   constructor(props)
+   constructor(pro)
    {
     super(props);
     this.state ={
