@@ -4,13 +4,14 @@ class NewTable extends React.Component
     constructor(props)
     {
         super(props);
-        const DISHPRICE = 100;
-        const ROTIPRICE = 10;
-        const CHASPRICE = 8;
-        const PAPADPRICE = 7.50;
-        const SWEETPRICE = 11.25;
+        
         this.no=props.no;
         this.name=props.name;
+         this.DISHPRICE = 100;
+         this.ROTIPRICE = 10;
+         this.CHASPRICE = 8;
+         this.PAPADPRICE = 7.50;
+         this.SWEETPRICE = 11.25;
 
         this.state = {
             dish:props.dish,
@@ -21,8 +22,33 @@ class NewTable extends React.Component
             total:0
         }
     }
+    componentWillMount()
+    {
+        console.log("Component will mount");
+    }
+    componentDidMount()
+    {
+        console.log("component did mount");
+    }
+    shouldComponentUpdate(nextProps,nextState)
+    {
+        console.log('shoudComponentupdate() method call...');
+        return true;
+    }
+    componentWillUpdate(nextProps,nextState)
+    {
+        console.log("Component will update");
+        console.log('Next state' +nextState.dish);
+        console.log('current State' +this.state.dish);
+    }
+    componentDidUpdate(prevProps,prevState)
+    {
+        console.log('component did update');
+    }
+   
     UpdateDish = () =>
     {
+        console.log(this.DISHPRICE);
         this.setState({
             dish:parseInt(this.state.dish) + 1
         });
@@ -97,22 +123,4 @@ class NewTable extends React.Component
         return output;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export default NewTable
