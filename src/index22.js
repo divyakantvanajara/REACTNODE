@@ -35,7 +35,7 @@ class Picture extends React.Component
             <div className='card shadow'>
                 <img src={this.state.source} className='img-fluid img-thumbnail' onClick={this.changePicture} />
             </div>
-        </div>;
+        </div>
         
         return output;
     }
