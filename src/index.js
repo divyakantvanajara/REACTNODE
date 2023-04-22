@@ -1,28 +1,34 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Layout from './Layout';
-import Home from './Home';
-import AboutUs from './AboutUs';
-import ContactUs from './ContactUs';
-import Product from './Product'
-import Course from './Course'
-import { BrowserRouter,Routes, Route } from 'react-router-dom';
-const root = ReactDOM.createRoot(document.getElementById('root'));
-function MyRouter()
+function UseEffectHookExample()
 {
-    return(
-        <BrowserRouter>
-            <Routes>
-                <Route path='/' element={<Layout />}>
-                    <Route path='/home' element={<Home />} />
-                    <Route path='/aboutus' element={<AboutUs />} />
-                    <Route path='/product' element={<Product />} />
-                    <Route path='/courses' element={<Course />} />
-                    <Route path='/contact' element={<ContactUs />} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
-    )
+   var [count,setCount] = useState(0);
+   var [textcolor,setTextColor]=useState('');
+
+   useEffect(() =>{
+    if(count%2==0)
+    {
+        setTextColor('text-primary')
+    }
+    else
+    {
+        setTextColor('text-danger')
+    }
+   }
+
+   )
+   return(
+    <div className='container'>
+        <div className='row'>
+            <div className='col-12'>
+                <h1 className={textcolor}>UseEffect hook example</h1><hr/>
+                <h2>you have clicked button {count} times</h2>
+                    <button className='btn btn-danger' onClick={() => setCount(count + 1)}> click</button>
+            </div>
+        </div>
+    </div>
+   )
 }
-root.render(<MyRouter />);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<UseEffectHookExample/>);
