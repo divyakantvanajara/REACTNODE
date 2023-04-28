@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-function UseEffectHookExample() {
+function ApiCalling() {
     var [posts, setPosts] = useState([]);
+
+    var [userId, setUserId] = useState();
+    var [title, setTitle] = useState();
+    var [body, setBody] = useState();
+
     useEffect(() => {
         var url = "https://jsonplaceholder.typicode.com/posts?_limit=5";
         if (posts.length == 0)
@@ -24,12 +29,30 @@ function UseEffectHookExample() {
         });
     }
     var AddPost = () => {
-        setPosts([...posts,{
-            "userId": 999,
-            "id": 199,
-            "title": "Ankit Patel Post",
-            "body": "this is post detail posted by Ankit"
-          }]);
+        var mypost = {
+            'userId': userId,
+            'id': 0,
+            'title': title,
+            'body': body,
+        }
+        // setPosts([...posts, mypost]);
+        var url = 'https://jsonplaceholder.typicode.com/posts';
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(mypost),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((response) => response.json())
+            .then((json) =>setPosts([...posts,json]));
+
+    }
+    var EditPost = (SinglePost) =>{
+        console.log(SinglePost);
+        setTitle(SinglePost.title);
+        setBody(SinglePost.body);
+        setUserId(SinglePost.userId);
     }
     return (<div className='container-fluid'>
         <div className='row'>
@@ -42,19 +65,24 @@ function UseEffectHookExample() {
                         <div className='card-body'>
                             <div className='mb-3'>
                                 <label htmlFor='userid'>User Id</label>
-                                <input type='text' className='form-control' id='userid' />
+                                <input type='text' className='form-control' id='userid'
+                                    onChange={(e) => setUserId(e.target.value)}
+                                    value={userId} />
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor='title'>Title</label>
-                                <input type='text' className='form-control' id='title' />
+                                <input type='text' className='form-control' id='title'
+                                    onChange={(e) => setTitle(e.target.value)}
+                                    value={title} />
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor='body'>Detail</label>
-                                <textarea type='text' className='form-control' id='body'>
-                                </textarea>    
+                                <textarea type='text' className='form-control' id='body'
+                                    onChange={(e) => setBody(e.target.value)} defaultValue={body}>
+                                </textarea>
                             </div>
                             <div className='mb-3'>
-                                <button type='button' className='btn ' onClick={(e) => AddPost()}>Add new post</button>
+                                <button type='button' className='btn btn-danger' onClick={(e) => AddPost()}>Add new post</button>
                             </div>
                         </div>
                     </div>
@@ -69,7 +97,7 @@ function UseEffectHookExample() {
                                     <th>id</th>
                                     <th>Title</th>
                                     <th>Detail</th>
-                                    <th>Action</th>
+                                    <th width='20%'>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -79,7 +107,9 @@ function UseEffectHookExample() {
                                         <td>{post.title}</td>
                                         <td>{post.body}</td>
                                         <td>
-                                            <button className='btn btn-danger' onClick={() => DeletePost(post.id)}>Delete Post</button>
+                                            <button className='btn btn-danger' onClick={() => DeletePost(post.id)}>Delete</button>
+                                            &nbsp;
+                                            <button className='btn btn-warning' onClick={() => EditPost(post)}>Edit</button>
                                         </td>
                                     </tr>
                                 })}
@@ -88,9 +118,8 @@ function UseEffectHookExample() {
                     </div>
                 </div>
             </div>
-
         </div>
     </div>)
 }
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<UseEffectHookExample />);
+root.render(<ApiCalling />);
